@@ -1,0 +1,13 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "title":"IncuBrix Timeline", "type":"object",
+  "required":["source_id","source_duration","segments","captions","effects"],
+  "properties":{
+    "source_id":{"type":"string"},"source_path":{"type":["string","null"]},
+    "source_duration":{"type":"number","exclusiveMinimum":0},"source_hash":{"type":"string"},"fps":{"type":"number","exclusiveMinimum":0},
+    "segments":{"type":"array","items":{"type":"object","required":["id","source_start","source_end","speed"],"properties":{"id":{"type":"string"},"source_start":{"type":"number","minimum":0},"source_end":{"type":"number","exclusiveMinimum":0},"speed":{"type":"number","minimum":0.25,"maximum":4}}}},
+    "captions":{"type":"array","items":{"type":"object","required":["id","text","anchor_start","anchor_end"]}},
+    "effects":{"type":"array","items":{"type":"object","required":["id","kind","anchor_start","anchor_end"],"properties":{"kind":{"enum":["mute","bleep"]}}}},
+    "version":{"type":"integer"}
+  }
+}

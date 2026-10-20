@@ -1,0 +1,11 @@
+{
+  "duration_s": 180,
+  "steps": [
+    {"say": "cut the first 30 seconds"},
+    {"say": "cut 00:40 to 00:50"},
+    {"say": "undo"},
+    {"say": "redo"},
+    {"say": "speed from 01:00 to 01:20 by 2x"},
+    {"say": "remove the part about pricing"}
+  ]
+}

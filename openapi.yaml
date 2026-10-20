@@ -1,0 +1,51 @@
+openapi: 3.1.0
+info:
+  title: IncuBrix Prompt-Based Video Editing Engine
+  version: 1.0.0
+servers:
+  - url: http://localhost:8000
+paths:
+  /health:
+    get:
+      summary: Liveness probe
+      responses:
+        '200': {description: Service is alive}
+  /ready:
+    get:
+      summary: Readiness probe
+      responses:
+        '200': {description: Service readiness}
+  /api/v1/sessions:
+    post:
+      summary: Create session from accessible source path
+      responses:
+        '200': {description: Session created}
+  /api/v1/sessions/upload:
+    post:
+      summary: Upload video
+      responses:
+        '200': {description: Session created}
+  /api/v1/sessions/{sid}/instructions:
+    post:
+      summary: Parse and apply instruction
+      parameters:
+        - in: path
+          name: sid
+          required: true
+          schema: {type: string}
+        - in: header
+          name: Idempotency-Key
+          required: true
+          schema: {type: string}
+      responses:
+        '200': {description: Three-way instruction response}
+  /api/v1/sessions/{sid}/render:
+    post:
+      summary: Render timeline asynchronously
+      responses:
+        '202': {description: Job accepted}
+  /api/v1/jobs/{job_id}:
+    get:
+      summary: Poll job status
+      responses:
+        '200': {description: Job status}
